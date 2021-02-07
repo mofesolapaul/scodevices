@@ -22,3 +22,7 @@ Remember to enable 'Google Maps Javascript Api' and 'Geocoding Api' on your GOOG
 
 #### Docker:
 You can spin up Docker environment for this app. Make sure to run migrations within the `scodevices-app` container
+
+#### Screenshots
+![screenshot 1](docs/screenshots/screenshot1.png)
+![screenshot 2](docs/screenshots/screenshot2.png)
