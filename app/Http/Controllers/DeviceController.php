@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DeviceAddedEvent;
 use App\Http\Requests\StoreDeviceRequest;
 use App\Models\Device;
 use Illuminate\Http\JsonResponse;
@@ -20,6 +21,7 @@ class DeviceController extends Controller
         $device->latitude = $request->get('latitude');
         $device->work = $request->get('work');
         $device->save();
+        DeviceAddedEvent::dispatch($device);
 
         return Redirect::route('home')->with(['status' => 'Device added successfully.']);
     }

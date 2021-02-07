@@ -49,7 +49,13 @@
 
                     @if (isset($devices) && count($devices))
                         <div class="card-footer">
-                            Farthest devices:
+                            @if (!$farthestDevices)
+                                <em>Computing farthest devices...</em>
+                            @else
+                                <div>Farthest devices:
+                                    {{ $farthestDevices[0]->device_id }} &rArr; {{ $farthestDevices[1]->device_id }}</div>
+                                Distance: {{ round((float)$distanceApart, 2) }}km
+                            @endif
                         </div>
                     @endif
                 </div>
@@ -104,6 +110,7 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <button type="reset" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -113,7 +120,7 @@
 
 @section('custom-js')
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfe84kmPMCflYo2RQzXPpYTsQ4L343CLU&libraries=&v=weekly"
+        src="https://maps.googleapis.com/maps/api/js?key={{ config('app.google_api_key') }}&libraries=&v=weekly"
     ></script>
 @endsection
 

@@ -19,9 +19,11 @@ namespace App\Models{
  * @property string $latitude
  * @property string $longitude
  * @property int $work
- * @property string $address
+ * @property string|null $address
+ * @property int $user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Device newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Device newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Device query()
@@ -32,6 +34,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Device whereLatitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Device whereLongitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Device whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Device whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Device whereWork($value)
  */
 	class Device extends \Eloquent {}

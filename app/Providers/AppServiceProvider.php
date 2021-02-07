@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Device;
+use App\Observers\DeviceCoordinatesToAddressObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
