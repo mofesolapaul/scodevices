@@ -1,0 +1,53 @@
+version: "3"
+services:
+  db:
+    image: mysql:5.7
+    container_name: scodevices-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+  app:
+    build:
+      args:
+        user: scodevices
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: scodevices
+    container_name: scodevices-app
+    restart: unless-stopped
+    working_dir: /var/www
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:1.17-alpine
+    container_name: scodevices-nginx
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
