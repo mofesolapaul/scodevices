@@ -10949,4 +10949,12 @@ a.text-dark:focus {
   min-height: 500px;
 }
 
+.device-item * {
+  pointer-events: none;
+}
+
+.farthest-device {
+  cursor: pointer;
+}
+
 

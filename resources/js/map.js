@@ -1,10 +1,11 @@
 $(() => {
     let map;
     let infowindow = new google.maps.InfoWindow();
+    let markers = {};
 
     (function initMap() {
         map = new google.maps.Map(document.getElementById("map_canvas"), {
-            zoom: 8,
+            zoom: 5,
             center: {lat: 54.8985, lng: 23.9036},
         });
 
@@ -30,5 +31,15 @@ $(() => {
             infowindow.setContent(content);
             infowindow.open(map, marker);
         });
+        markers[device.device_id] = marker;
     }
+
+    $('.device-item,.farthest-device').click((e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        let markerID = $(e.target).data('marker');
+        map.setZoom(13);
+        map.panTo(markers[markerID].position);
+        google.maps.event.trigger(markers[markerID], 'click');
+    });
 });

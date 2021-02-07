@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Events\DeviceAddedEvent;
 use App\Listeners\CalculateFarthestDevicesListener;
 use App\Listeners\DeviceCoordinatesToAddressListener;
+use App\Listeners\SendMailForWorkDeviceListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -22,6 +23,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         DeviceAddedEvent::class => [
             DeviceCoordinatesToAddressListener::class,
+            SendMailForWorkDeviceListener::class,
             CalculateFarthestDevicesListener::class,
         ]
     ];

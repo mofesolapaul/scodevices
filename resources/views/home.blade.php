@@ -34,7 +34,8 @@
 
                         <ul class="list-group list-group-flush">
                             @forelse($devices as $device)
-                                <li class="list-group-item list-group-item-action">
+                                <li class="list-group-item list-group-item-action device-item"
+                                    data-marker="{{ $device->device_id }}">
                                     {{ $device->device_id }}
                                     <div class="small text-muted">
                                         {{ $device->work ? 'Work':'Home' }} |
@@ -53,7 +54,16 @@
                                 <em>Computing farthest devices...</em>
                             @else
                                 <div>Farthest devices:
-                                    {{ $farthestDevices[0]->device_id }} &rArr; {{ $farthestDevices[1]->device_id }}</div>
+                                    <span class="farthest-device"
+                                          data-marker="{{ $farthestDevices[0]->device_id }}">
+                                        {{ $farthestDevices[0]->device_id }}
+                                    </span>
+                                    &rArr;
+                                    <span class="farthest-device"
+                                          data-marker="{{ $farthestDevices[1]->device_id }}">
+                                        {{ $farthestDevices[1]->device_id }}
+                                    </span>
+                                </div>
                                 Distance: {{ round((float)$distanceApart, 2) }}km
                             @endif
                         </div>
