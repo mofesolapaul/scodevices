@@ -56,7 +56,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-body">
+                    <div id="map_canvas" class="card-body">
                     </div>
                 </div>
             </div>
@@ -110,3 +110,11 @@
     </div>
     </div>
 @endsection
+
+@section('custom-js')
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfe84kmPMCflYo2RQzXPpYTsQ4L343CLU&libraries=&v=weekly"
+    ></script>
+@endsection
+
+{{--AIzaSyAfe84kmPMCflYo2RQzXPpYTsQ4L343CLU--}}

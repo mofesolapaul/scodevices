@@ -23,3 +23,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/devices', [App\Http\Controllers\DeviceController::class, 'store']);
+Route::get('/devices', [App\Http\Controllers\DeviceController::class, 'list']);
